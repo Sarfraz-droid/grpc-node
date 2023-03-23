@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package chat;
+
+service Chat {
+  rpc Send (Message) returns (Message) {}
+  rpc Receive (Message) returns (stream Message) {}
+  rpc Join (Connect) returns (stream Connect) {}
+}
+
+message Message {
+  string text = 1;
+}
+
+message Connect {
+    int32 port = 1;
+}
+
+
