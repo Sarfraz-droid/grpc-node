@@ -62,6 +62,16 @@ ipcMain.on(IPCChannels.Send, async (event: any, arg: any) => {
   event.reply(IPCChannels.Send, arg);
 })
 
+ipcMain.on(IPCChannels.Chunks, async (event: any, arg: any) => {
+  console.log("Chunks: ", arg);
+  event.reply(IPCChannels.Chunks, arg);
+})
+
+ipcMain.on(IPCChannels.Documents, async (event: any, arg: any) => {
+  console.log("Documents: ", arg);
+  event.reply(IPCChannels.Documents, arg);
+})
+
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();

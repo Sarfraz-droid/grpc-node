@@ -6,6 +6,22 @@ service Chat {
   rpc Send (Message) returns (Message) {}
   rpc Receive (Message) returns (stream Message) {}
   rpc Join (Connect) returns (stream Connect) {}
+  rpc Chunks (Chunk) returns (stream Chunk) {}
+  rpc Documents (Document) returns (Document) {}
+}
+
+message Chunk {
+  string id = 1;
+  int32 index = 2;
+  bytes data = 3;
+}
+
+message Document {
+  string id = 1;
+  string name = 2;
+  int32 size = 3;
+  string type = 4;
+  int32 length = 5;
 }
 
 message Message {
@@ -15,5 +31,4 @@ message Message {
 message Connect {
     int32 port = 1;
 }
-
 

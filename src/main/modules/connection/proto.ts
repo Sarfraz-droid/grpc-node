@@ -5,10 +5,7 @@ import * as grpc from "@grpc/grpc-js";
 const __dirname = path.resolve();
 
 const PROTO_PATH = path.join(__dirname, '/src/proto/chat.proto');
-
-console.log(PROTO_PATH);
-
-    const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
+const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
     keepCase: true,
     longs: String,
     enums: String,
@@ -16,4 +13,8 @@ console.log(PROTO_PATH);
     oneofs: true
 });
 
-export let chatProto = grpc.loadPackageDefinition(packageDefinition).chat;
+
+
+export let chatProto : grpc.GrpcObject  = grpc.loadPackageDefinition(packageDefinition).chat as grpc.GrpcObject ;
+
+export type IChatProto = typeof chatProto;

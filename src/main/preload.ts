@@ -4,6 +4,7 @@ import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 import { createServer } from "./modules/connection/server"
 import { createClient, ClientSend } from "./modules/connection/client"
 import { IPCChannels } from 'utils/constants';
+import { FileSend } from './modules/services/rpc'
 
 
 const electronHandler = {
@@ -41,7 +42,8 @@ const connectionHandler = {
     console.log(`Sending message: ${text}`)
     // console.log(text)
     ClientSend(text)
-  }
+  },
+  FileSend
 }
 
 contextBridge.exposeInMainWorld('GRPCconnection', connectionHandler);

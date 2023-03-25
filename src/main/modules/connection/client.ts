@@ -3,14 +3,10 @@ import { chatProto } from "./proto";
 import { ipcRenderer } from "electron";
 import { IPCChannels } from "utils/constants";
 
+
+
 export let client: null | any = null;
 export let connectedPort: null | number = null;
-
-const startChat = (port : number) => {
-    const channel = client.Join({
-        port: port
-    })
-}
 
 export const ClientSend = (message : string) => {
 
@@ -18,20 +14,13 @@ export const ClientSend = (message : string) => {
         console.log("Client is null")
         return;
     }
-
-    const channel = client.Send({
+    
+    // Sending the Message
+    client.Send({
         text: message
     },(res : any) => {
         console.log(res)
     })
-
-    // console.log(channel)
-
-    // console.log(channel?.status)
-
-    // channel.on('*', (data : any) => {
-    //     console.log("event", data)
-    // });
 }
 
 export const createClient = async (port : number, serverPort : number) => {
@@ -44,8 +33,13 @@ export const createClient = async (port : number, serverPort : number) => {
         })
         return;
     }
+
+
+
     console.log(`Connecting to port ${port} as Client...`)
     connectedPort = port;
+
+
     client = new (chatProto as any).Chat(
         `localhost:${port}`,
         grpc.credentials.createInsecure()
@@ -61,5 +55,7 @@ export const createClient = async (port : number, serverPort : number) => {
         port: port,
         message: `Connected to port ${port}`
     })
-    startChat(serverPort);
+    client.Join({
+        port: serverPort
+    })
 }
