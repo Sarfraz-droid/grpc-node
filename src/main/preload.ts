@@ -5,6 +5,7 @@ import { createServer } from "./modules/connection/server"
 import { createClient, ClientSend } from "./modules/connection/client"
 import { IPCChannels } from 'utils/constants';
 import { FileSend } from './modules/services/rpc'
+import fs from "fs"
 
 
 const electronHandler = {
@@ -44,6 +45,10 @@ const connectionHandler = {
     ClientSend(text)
   },
   FileSend
+}
+
+if(!fs.existsSync('./server')) {
+  fs.mkdirSync('./server')
 }
 
 contextBridge.exposeInMainWorld('GRPCconnection', connectionHandler);
