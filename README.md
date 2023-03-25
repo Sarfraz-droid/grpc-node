@@ -6,3 +6,7 @@ This is a very scuffed P2P chat app.
 - It's also not very well documented. 
 - It's also not very well tested. 
 - It's also not very well written. It's also not very well designed. 
+
+
+## Example
+![Capture](https://user-images.githubusercontent.com/73013838/227715934-ebb18291-6bf4-493c-b060-7803c3ba012e.PNG)
